@@ -6,15 +6,15 @@ var monk = require('monk');
 var config = require('./config.json');
 
 var dbHostName, dbPortNumber, dbName;
-if (config && config.database) {
-  dbHostName = config.database.default.host;
-  dbPortNumber = config.database.default.port;
-  dbName = config.database.default.name;
-} else {
-  dbHostName = 'localhost';
-  dbPortNumber = 27017;
-  dbName = 'mongoui';
-}
+//if (config && config.database) {
+//  dbHostName = config.database.default.host;
+//  dbPortNumber = config.database.default.port;
+//  dbName = config.database.default.name;
+//} else {
+  dbHostName = process.env.MONGODB_SERVICE_HOST;
+  dbPortNumber = process.env.MONGODB_SERVICE_PORT;
+  dbName = 'sampledb';
+//}
 var db = monk(dbHostName + ':' +
   dbPortNumber + '/' +
   dbName);
